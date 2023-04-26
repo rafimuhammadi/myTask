@@ -55,10 +55,10 @@
                       <a type="button" href="{{route('students.index')}}" class="btn btn-secondary"><i class="fas fa-arrow-alt-circle-left"></i> Back</a>
                     </div>
                   </div>
-                </div>
-            </div>
+              </div>
+          </div>
     </form>
-  </div>
+</div>
   <script>
     var loadFile    = function(event) {
       var image     = document.getElementById('output');

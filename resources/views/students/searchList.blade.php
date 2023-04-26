@@ -1,13 +1,13 @@
 <table class="table table-striped- table-bordered table-hover table-checkable" style="font-size:14px;">
     <thead>
-          <tr>
-              <th width="5%">ID</th>
-              <th>Name</th>
-              <th>Father Name</th>
-              <th>Gender</th>
-              <th>Phone</th>
-              <th width="10%">Image</th>
-              <th width="10%">Action</th>
+        <tr>
+            <th width="5%">ID</th>
+            <th>Name</th>
+            <th>Father Name</th>
+            <th>Gender</th>
+            <th>Phone</th>
+            <th width="10%">Image</th>
+            <th width="10%">Action</th>
         </tr>
     </thead>
     <tbody style="width: auto;overflow-x: auto;white-space: nowrap;">
@@ -25,14 +25,14 @@
           <img src="{{asset('storage/'.$rec->image)}}" id="output" class="image responsive img-thumbnail" style="width:70%; cursor: pointer;" onclick="$('#recimage').click();">
         </td>
         <td>
-              <span class="dtr-data">
-                  <span class="dropdown">
-                      <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="false"><i class="la la-ellipsis-h"></i></a>
-                      <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-32px, 27px, 0px);">
-                            <a class="dropdown-item" href="javascript:void()" onclick="addRecord('{{ route('students.edit',encrypt($rec->id)) }}','','GET','response_div')"><i class="la la-edit"></i>edit</a>
-                      </div>
-                  </span>
-              </span>
+            <span class="dtr-data">
+                <span class="dropdown">
+                    <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="false"><i class="la la-ellipsis-h"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-32px, 27px, 0px);">
+                          <a class="dropdown-item" href="javascript:void()" onclick="addRecord('{{ route('students.edit',encrypt($rec->id)) }}','','GET','response_div')"><i class="la la-edit"></i>edit</a>
+                    </div>
+                </span>
+            </span>
           </td>
       </tr>
       @endforeach
@@ -65,9 +65,9 @@
                         $.ajax({
                         url: '{{ route("search") }}',
                         data: dataString,
-                        type: 'get',
+                        type: 'GET',
                         beforeSend: function(){
-                            $('#searchresult').html('<span style="position:relative;left:30%;"><img alt="" src="{!!asset('assets/img/loader.gif')!!}" /></span>');
+                          $("#searchresult").html('<div class="col text-center" style="width:100%"><img alt="loader" src="{{asset("assets/img/loader.gif")}}" /></div>');
                         },
                         success: function(response)
                         {

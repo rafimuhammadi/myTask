@@ -40,15 +40,15 @@
     <div class="m-portlet__body table-responsive">
         <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed table-responsive" enctype="multipart/form-data" id="searchForm" method="post" autocomplete="off">
             <div class="form-group m-form__group row m-form__group_custom">
-              <div class="col-lg-3">
+              <div class="col-lg-4">
                 <label class="title-custom">Name:</label>
-                <input type='text' class='form-control keypressbutton' style='' name='name' id="name" placeholder="Name"  />
+                <input type='text' class='form-control' name='name' id="name" placeholder="Name"  />
               </div>
-              <div class="col-lg-3">
+              <div class="col-lg-4">
                 <label class="title-custom">Father Name:</label>
-                <input type='text' class='form-control keypressbutton' style='' name='father_name' id="father_name" placeholder="Name"  />
+                <input type='text' class='form-control' name='father_name' id="father_name" placeholder="Father Name"  />
               </div>
-              <div class="col-lg-3">
+              <div class="col-lg-4">
                   <label class="title-custom">Gender:</label>
                   <select class="form-control m-input errorDiv m-input--air select-2" name="gender" id="gender">
                     <option value="">Select</option>
@@ -56,11 +56,11 @@
                     <option value="2">Female</option>
                   </select>
               </div>
-              <div class="col-lg-3">
+            </div>
+              <div class="col-lg-12">
                 <div class="m-form__actions m-form__actions--slid">
                   <button type="button" onclick="filter('{{route('search')}}','GET','searchresult','searchForm');" id="add" class="btn btn-primary"> <b><i class="fas fa-search"></i> Search</b></button> &nbsp;
-                  <button type="button"  class="btn btn-warning" onclick="RestForm('searchForm')"> <b><i class="fas 	fa-eraser"></i> Reset</b></button>
-              </div>
+                  <button type="button"  class="btn btn4warning" onclick="RestForm('searchForm')"> <b><i class="fas 	fa-eraser"></i> Reset</b></button>
               </div>
             </div>
         </form>
@@ -124,17 +124,4 @@
   </div>
 </div>
 </div>
-<script>
-  $(function() {
-    //usage
-    $(".datePicker").persianDatepicker({
-      cellWidth: 45,
-      cellHeight: 35,
-      fontSize: 14
-    });
-    $(".datePicker").focus(function() {
-      $(this).blur();
-    });
-  });
-</script>
 @endsection

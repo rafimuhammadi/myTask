@@ -44,20 +44,14 @@ class StudentsController extends Controller
     {
         if ($request->hasFile('image')) 
         {
-            $createYear     = date('Y');
-            $createMounth   = date('m');
-            $path           = Storage::disk('attachments')->put('studentImage/' . $createYear . '/' . $createMounth, $request->file('image'));
+            $path   = Storage::disk('attachments')->put('studentImage/' . date('Y') . '/' . date('m'), $request->file('image'));
         } 
-        else 
-        {
-            $path = '';
-        }
         $record                     = new Students;
         $record->name               = $request->name;
         $record->father_name        = $request->father_name;
         $record->gender             = $request->gender;
         $record->phone              = $request->phone;
-        $record->image              = $path;
+        $record->image              = $request->hasFile('image') ? $path : '';
         $record->created_by         = Auth::user()->id;
         if ($record->save()) 
         {
@@ -138,7 +132,8 @@ class StudentsController extends Controller
                 ->when(request()->gender, function ($query) {
                     $query->where('gender', trim(request()->gender));
                 })
-                ->orderBy('id', 'asc')->paginate(10);
+                ->orderBy('id', 'asc')
+                ->paginate(10);
             return view('students.searchList', $data);
         } 
         else 

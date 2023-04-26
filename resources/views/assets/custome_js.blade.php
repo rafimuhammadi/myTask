@@ -92,7 +92,6 @@ function serverRequestResponse(url,params,method,response_div,btnID='submitBtn',
         $('#'+key).css('border-bottom','1px solid #dc3545');
       });
     },
-
     cache: false,
     processData: false,
     contentType: false,
@@ -130,16 +129,6 @@ $(document).ready(function()
         }
     });
 });
-
-// Filter Records
-function searchRecords(url,form_id,method,response_div,loading=true)
-{
-  if(validation(form_id))
-  {
-   var params = $('#'+form_id).serialize();
-   serverRequest(url,params,method,response_div,loading);
- }
-}
 
 function validation(form_id)
 {
@@ -180,11 +169,10 @@ function filter(url,method,response_div,form_id)
       data:params,
       type: method,
       beforeSend: function(){
-        $(".m-page-loader.m-page-loader--base").css("display","block");
+        $("#"+response_div).html('<div class="col text-center" style="width:100%"><img alt="loader" src="{{asset("assets/img/loader.gif")}}" /></div>');
       },
       success: function(response)
       {
-        $(".m-page-loader.m-page-loader--base").css("display","none");
         $("#"+response_div).html(response);
       }
   });
