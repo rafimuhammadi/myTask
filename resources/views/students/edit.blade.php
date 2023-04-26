@@ -12,12 +12,12 @@
             <div class="form-group m-form__group row m-form__group_custom">
                 <div class="col-lg-4">
                     <label class="title-custom">Name: <span style="color:red;">*</span></label>
-                    <input class="form-control m-input errorDiv" type="text" value="" name="name" id="name" placeholder="Name">
+                    <input class="form-control m-input errorDiv" type="text" value="{{$record->name}}" name="name" id="name" placeholder="Name">
                     <div class="name error-div" style="display:none;"></div>
                 </div>
                 <div class="col-lg-4">
                     <label class="title-custom">Father Name: <span style="color:red;">*</span></label>
-                    <input class="form-control m-input errorDiv" type="text" value="" name="father_name" id="father_name" placeholder="Father Name">
+                    <input class="form-control m-input errorDiv" type="text" value="{{$record->father_name}}" name="father_name" id="father_name" placeholder="Father Name">
                     <div class="father_name error-div" style="display:none;"></div>
                 </div>
                 <div class="col-lg-4" class="errorDiv">
@@ -25,8 +25,8 @@
                     <div id="gender" class="errorDiv">
                     <select class="form-control m-input errorDiv m-input--air select-2" name="gender" id="gender">
                         <option value="">Select</option>
-                        <option value="1">Male</option>
-                        <option value="2">Female</option>
+                        <option value="1" <?= $record->gender   == 1 ? 'selected' : ''?>>Male</option>
+                        <option value="2" <?= $record->gender  == 2 ? 'selected' : ''?>>Female</option>
                     </select>
                     </div>
                     <div class="gender error-div" style="display:none;"></div>
@@ -35,15 +35,19 @@
             <div class="form-group m-form__group row m-form__group_custom">
                 <div class="col-lg-4">
                     <label class="title-custom">Phone Number:</label>
-                    <input class="form-control m-input errorDiv" type="text" value="" name="phone" id="phone" placeholder="Phone Number" maxlength="10">
+                    <input class="form-control m-input errorDiv" type="text" value="{{$record->phone}}" name="phone" id="phone" placeholder="Phone Number" maxlength="10">
                     <div class="phone error-div" style="display:none;"></div>
                 </div>
                 <div class="col-lg-8">
                     <label class="title-custom">Image:</label><br>
                     <label style="cursorLpointer">
-                    <input type="file" name="image" id="file" class="textbox" accept="image/*" onchange="loadFile(event)" hidden>
-                    <img src="{{asset('assets/img/userImage.jpeg')}}" id="output" class="image responsive img-thumbnail" style="width:40%; cursor: pointer; margin-top: 10px;" onclick="$('#recimage').click();">
-                    <div class="image error-div" style="display:none;"></div>
+                        <input type="file" name="image" id="file" class="textbox" accept="image/*" onchange="loadFile(event)" hidden>
+                        @if ($record->image !='')
+                            <img src="{{asset('storage/'.$record->image)}}" id="output" class="image responsive img-thumbnail" style="width:70%; cursor: pointer; margin-top: 10px;" onclick="$('#recimage').click();">
+                            @else
+                            <img src="{{asset('assets/img/userImage.jpeg')}}" id="output" class="image responsive img-thumbnail" style="width:40%; cursor: pointer; margin-top: 10px;" onclick="$('#recimage').click();">
+                        @endif                    
+                        <div class="image error-div" style="display:none;"></div>
                     </label>
                 </div>
             </div>
@@ -51,12 +55,13 @@
                 <div class="col-lg-12">
                   <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
                     <div class="m-form__actions m-form__actions--slid">
-                      <button type="button" onclick="storeRecord('{{route('students.store')}}','requestForm','POST','response_div','submitBtn');" id="submitBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Save</button>
+                      <button type="button" onclick="storeRecord('{{route('updateStudent',$record->id)}}','requestForm','POST','response_div','submitBtn');" id="submitBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Save</button>
                       <a type="button" href="{{route('students.index')}}" class="btn btn-secondary"><i class="fas fa-arrow-alt-circle-left"></i> Back</a>
                     </div>
                   </div>
                 </div>
             </div>
+        </div>
     </form>
   </div>
   <script>

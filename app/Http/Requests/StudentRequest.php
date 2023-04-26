@@ -15,7 +15,6 @@ class StudentRequest extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -27,11 +26,10 @@ class StudentRequest extends FormRequest
             'name'               => 'required',
             'father_name'        => 'required',
             'gender'             => 'required',
-            'phone'              => 'regex:/^(07)[0-9]{8}$/',
+            'phone'              => 'required|regex:/^(07)[0-9]{8}$/',
             'image'              => 'required|mimes:jpeg,bmp,jpg,png|max:2000',
         ];
     }
-
      /**
      * Get the error messages for the defined validation rules.
      *
@@ -39,12 +37,11 @@ class StudentRequest extends FormRequest
      */
     public function messages()
     {
-
        return [
            'name.required'               => "Name Feild is Required!",
            'father_name.required'        => "Father Name Feild is Required!",
            'gender.required'             => "Please Select The Gender!",
-           'phone.regex'                 => "Entered Phone is Wrong!",
+           'phone.regex'                 => "Phone Number Must be Like This(078XXXXXXX)",
            'phone.required'              => "Phone Number Feild is Required!",
            'image.required'              => "Please Select Your Image!",
            'image.mimes'                 => "Image Must Be (JGP,PNG,JPEG)!",

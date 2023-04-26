@@ -14,7 +14,11 @@ $.ajaxSetup({
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });
-
+// Add Records
+function addRecord(url,params,method,response_div)
+{
+  serverRequest(url,params,method,response_div);
+}
 // Call data from server side
 const serverRequest = (url,params,method,response_div,is_modal=false)=>
 {
@@ -116,12 +120,11 @@ $(document).ready(function()
                 data: dataString,
                 type: 'get',
                 beforeSend: function(){
-                    $(".m-page-loader.m-page-loader--base").css("display","block");
+                    $("#searchresult").html('<div class="col text-center" style="width:100%"><img alt="loader" src="{{asset("assets/img/loader.gif")}}" /></div>');
                 },
                 success: function(response)
                 {
                     $('#searchresult').html(response);
-                    $(".m-page-loader.m-page-loader--base").css("display","none");
                 }
             });
         }

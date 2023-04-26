@@ -22,6 +22,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'],function()
 {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('create',[TestController::class,'create'])->name('create');
+    Route::post('updateStudent/{id}',[StudentsController::class,'update'])->name('updateStudent');
+    Route::get('search',[StudentsController::class,'search'])->name('search');
     Route::resource('students', StudentsController::class);
 });

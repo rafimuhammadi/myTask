@@ -22,7 +22,17 @@
         </td>
         <td>{{ $rec->phone }}</td>
         <td >
-          <img src="{{asset('storage/'.$rec->image)}}" id="output" class="image responsive img-thumbnail" style="width:100%; cursor: pointer; margin-top: 10px;" onclick="$('#recimage').click();">
+          <img src="{{asset('storage/'.$rec->image)}}" id="output" class="image responsive img-thumbnail" style="width:70%; cursor: pointer;" onclick="$('#recimage').click();">
+        </td>
+        <td>
+            <span class="dtr-data">
+                <span class="dropdown">
+                    <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="false"><i class="la la-ellipsis-h"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-32px, 27px, 0px);">
+                          <a class="dropdown-item" href="javascript:void()" onclick="addRecord('{{ route('students.edit',encrypt($rec->id)) }}','','GET','response_div')"><i class="la la-edit"></i>edit</a>
+                    </div>
+                </span>
+            </span>
         </td>
       </tr>
       @endforeach
@@ -55,10 +65,9 @@
             data: dataString,
             type: 'get',
             beforeSend: function() {
-                $(".m-page-loader.m-page-loader--base").css("display","block");
+              $("#searchresult").html('<div class="col text-center" style="width:100%"><img alt="loader" src="{{asset("assets/img/loader.gif")}}" /></div>');
             },
             success: function(response) {
-                $(".m-page-loader.m-page-loader--base").css("display","none");
               $('#searchresult').html(response);
             }
           });

@@ -13,14 +13,14 @@
     <div class="m-portlet__head-tools">
       <ul class="m-portlet__nav">
         <li class="m-portlet__nav-item">
-          <a href="javascript:void()" onclick="addRecord('{{route('students.create')}}','','GET','response_div')" class="btn btn-primary m-btn   m-btn--icon m-btn--air">
+          <button  onclick="addRecord('{{route('students.create')}}','','GET','response_div')" class="btn btn-primary m-btn   m-btn--icon m-btn--air">
             <span><i class="fas	fa-plus"></i><span>Add New</span></span>
-          </a>
+          </button>
         </li>
         <li class="m-portlet__nav-item">
           <div class="m-input-icon m-input-icon--left">
             <a class="btn btn-secondary m-btn--icon" id="collapsBtn" data-toggle="collapse" href="#collapseDiv" role="button" aria-expanded="true" aria-controls="collapseDiv">
-              <span><i class="la la-arrows-v"></i><span>{{ trans('global.search') }}</span></span>
+              <span><i class="la la-arrows-v"></i><span>Search</span></span>
             </a>
           </div>
         </li>
@@ -38,64 +38,32 @@
   <!-- Filter Start -->
   <div class="code notranslate cssHigh collapse table-responsive" id="collapseDiv">
     <div class="m-portlet__body table-responsive">
-      {{-- <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed table-responsive" enctype="multipart/form-data" id="searchForm" method="post" autocomplete="off">
-        <div class="form-group m-form__group row m-form__group_custom">
-          <div class="col-lg-2">
-            <label class="title-custom">{{ trans('criminalLetter.serailNumber') }}:</label>
-            <input type='text' class='form-control keypressbutton' style='' name='serail_number' id="serail_number" placeholder="CL-1401-xxxxx" />
-          </div>
-          <div class="col-lg-2">
-            <label class="title-custom">{{ trans('criminalLetter.name') }}:</label>
-            <input type='text' class='form-control keypressbutton' style='' name='name' id="name" placeholder="{{ trans('criminalLetter.name') }}" />
-          </div>
-          <div class="col-lg-2">
-            <label class="title-custom">{{ trans('criminalLetter.father_name') }}:</label>
-            <input type='text' class='form-control keypressbutton' style='' name='father_name' id="father_name" placeholder="{{ trans('criminalLetter.father_name') }}" />
-          </div>
-          <div class="col-lg-3">
-            <label class="title-custom">{{ trans('criminalLetter.grandFatherName') }} :</label>
-            <input class="form-control m-input keypressbutton" type="text" value="" name="grandFatherName" id="grandFatherName" placeholder="{{ trans('criminalLetter.grandFatherName') }}">
-          </div>
-          <div class="col-lg-3">
-            <label class="title-custom">{{ trans('criminalLetter.purposeOfRequest') }}:</label>
-            <select class="form-control m-input errorDiv m-input--air select-2" name="purposeOfRequest" id="purposeOfRequest">
-              <option value="">{{ trans('global.select') }}</option>
-              @foreach ($purposeOfRequest as $prRec )
-              <option value="{{$prRec->id}}">{{$prRec->name}}</option>
-              @endforeach
-            </select>
-          </div>
-        </div>
-        <div class="form-group m-form__group row m-form__group_custom">
-          <div class="col-lg-3">
-            <label class="title-custom">{{ trans('criminalLetter.requestSource') }}:</label>
-            <input class="form-control m-input keypressbutton" type="text" value="" name="sourceRequest" id="sourceRequest" placeholder="{{ trans('criminalLetter.requestSource') }}">
-          </div>
-          <div class="col-lg-3">
-            <label class="title-custom">{{ trans('criminalLetter.gender') }}:</label>
-            <select class="form-control m-input errorDiv m-input--air select-2" name="gender" id="gender">
-              <option value="">{{ trans('global.select') }}</option>
-              <option value="1">{{ trans('global.male') }}</option>
-              <option value="2">{{ trans('global.female') }}</option>
-            </select>
-          </div>
-          <div class="col-lg-3">
-            <label class="title-custom">{{ trans('criminalLetter.date') }} :</label>
-            <label class="title-custom">{{ trans('criminalLetter.from') }} </label>
-            <input type='text' class='form-control datePicker' name='startDate' id="startDate" placeholder='تاریخ از' />
-          </div>
-          <div class="col-lg-3">
-            <label class="title-custom">{{ trans('criminalLetter.to') }} :</label>
-            <input type='text' class='form-control datePicker' name='endDate' id="endDate" placeholder='تاریخ الی' />
-          </div>
-          <div class="col-lg-12">
-            <div class="m-form__actions m-form__actions--slid">
-              <button type="button" onclick="filter('{{route('criminalLetterSearching')}}','GET','searchresult','searchForm');" id="add" class="btn btn-primary"> <b><i class="fas fa-search"></i> {{ trans('global.search') }}</b></button> &nbsp;
-              <button type="button" class="btn btn-warning" onclick="RestForm('searchForm')"> <b><i class="fas 	fa-eraser"></i> {{ trans('global.reset') }}</b></button>
+        <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed table-responsive" enctype="multipart/form-data" id="searchForm" method="post" autocomplete="off">
+            <div class="form-group m-form__group row m-form__group_custom">
+              <div class="col-lg-3">
+                <label class="title-custom">Name:</label>
+                <input type='text' class='form-control keypressbutton' style='' name='name' id="name" placeholder="Name"  />
+              </div>
+              <div class="col-lg-3">
+                <label class="title-custom">Father Name:</label>
+                <input type='text' class='form-control keypressbutton' style='' name='father_name' id="father_name" placeholder="Name"  />
+              </div>
+              <div class="col-lg-3">
+                  <label class="title-custom">Gender:</label>
+                  <select class="form-control m-input errorDiv m-input--air select-2" name="gender" id="gender">
+                    <option value="">Select</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                  </select>
+              </div>
+              <div class="col-lg-3">
+                <div class="m-form__actions m-form__actions--slid">
+                  <button type="button" onclick="filter('{{route('search')}}','GET','searchresult','searchForm');" id="add" class="btn btn-primary"> <b><i class="fas fa-search"></i> Search</b></button> &nbsp;
+                  <button type="button"  class="btn btn-warning" onclick="RestForm('searchForm')"> <b><i class="fas 	fa-eraser"></i> Reset</b></button>
+              </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </form> --}}
+        </form>
     </div>
   </div>
   <!-- Filter End -->
@@ -124,7 +92,17 @@
           </td>
           <td>{{ $rec->phone }}</td>
           <td>                    
-            <img src="{{asset('storage/'.$rec->image)}}" id="output" class="image responsive img-thumbnail" style="width:100%; cursor: pointer; margin-top: 10px;" onclick="$('#recimage').click();">
+            <img src="{{asset('storage/'.$rec->image)}}" id="output" class="image responsive img-thumbnail" style="width:70%; cursor: pointer;" onclick="$('#recimage').click();">
+          </td>
+          <td>
+              <span class="dtr-data">
+                  <span class="dropdown">
+                      <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="false"><i class="la la-ellipsis-h"></i></a>
+                      <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-32px, 27px, 0px);">
+                            <a class="dropdown-item" href="javascript:void()" onclick="addRecord('{{ route('students.edit',encrypt($rec->id)) }}','','GET','response_div')"><i class="la la-edit"></i>edit</a>
+                      </div>
+                  </span>
+              </span>
           </td>
         </tr>
         @endforeach
@@ -132,7 +110,7 @@
         <tr>
           <td colspan="9">
             <center>
-              <h3 style="color:red">{{ trans('global.noRecordFound') }}</h3>
+              <h3 style="color:red">Record Not Exists!</h3>
             </center>
           </td>
         </tr>
