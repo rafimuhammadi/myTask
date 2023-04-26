@@ -121,6 +121,7 @@ class StudentsController extends Controller
                         'name',
                         'father_name',
                         'gender',
+                        'phone',
                         'image',
                     )
                 ->when(request()->name, function ($query) {
@@ -142,6 +143,7 @@ class StudentsController extends Controller
                     'id',
                     'name',
                     'father_name',
+                    'phone',
                     'gender',
                     'image',
                 )
